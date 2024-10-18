@@ -7,6 +7,7 @@
 //////////////////////////////////////////////////////////////////////////
 #ifndef CALM_NET_TCPCONNECTION_H_
 #define CALM_NET_TCPCONNECTION_H_
+#include <any>
 #include "uncopyable.h"
 #include "stringpiece.h"
 #include "types.h"
@@ -52,6 +53,21 @@ namespace calm
 			void startRead();
 			void stopRead();
 			bool isReading() const { return reading_; }
+
+			void setContext(const std::any& context)
+			{
+				context_ = context;
+			}
+
+			const std::any& getContext() const
+			{
+				return context_;
+			}
+
+			std::any* getMutableContext()
+			{
+				return &context_;
+			}
 
 			void setConnectionCallback(const ConnectionCallback& cb)
 			{
@@ -125,6 +141,8 @@ namespace calm
 			Buffer inputBuffer_;
 			Buffer outputBuffer_;
 			bool reading_;
+
+			std::any context_;
 		};//end class TcpConnection
 	}//end namespace net
 }//end namespace calm 

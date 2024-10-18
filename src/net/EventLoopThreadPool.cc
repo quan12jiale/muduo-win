@@ -8,6 +8,7 @@
 #include "EventLoopThread.h"
 #include "EventLoopThreadPool.h"
 #include <utility>  
+#include <cassert>
 using namespace calm;
 using namespace calm::net;
 
